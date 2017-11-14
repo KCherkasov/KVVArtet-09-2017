@@ -191,6 +191,14 @@ public class Battlefield implements Updateable {
         }
     }
 
+    private void removeExpiredEffects() {
+        for (Effect effect : appliedEffects) {
+            if (effect.isExpired()) {
+                appliedEffects.remove(effect);
+            }
+        }
+    }
+
     private void endBattleCleanup() {
         for (Squad squad : squads) {
             for (Integer i = 0; i < squad.getSquadSize(); ++i) {
