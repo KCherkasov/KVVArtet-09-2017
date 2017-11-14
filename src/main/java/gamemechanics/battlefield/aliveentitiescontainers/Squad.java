@@ -45,6 +45,16 @@ public class Squad implements Countable {
         return ID;
     }
 
+    @Override
+    public Integer getInstancesCount() {
+        return instanceCounter.get();
+    }
+
+    @Override
+    public Integer getID() {
+        return ID;
+    }
+
     public AliveEntity getMember(Integer memberIndex) {
         if (memberIndex < 0 && memberIndex >= members.size()) {
             return null;
@@ -74,6 +84,19 @@ public class Squad implements Countable {
         }
         members.get(memberIndex)
                 .setProperty(PropertyCategories.PC_SQUAD_ID, Constants.UNDEFINED_SQUAD_ID);
+        members.remove(memberIndex.intValue());
+    }
+
+    public void removeMember(AliveEntity member) {
+        if (member != null) {
+            members.remove(member);
+        }
+    }
+
+    public void removeMember(Integer memberIndex) {
+        if (memberIndex < 0 || memberIndex >= members.size()) {
+            return;
+        }
         members.remove(memberIndex.intValue());
     }
 
